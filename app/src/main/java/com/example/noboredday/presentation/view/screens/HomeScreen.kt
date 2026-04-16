@@ -17,8 +17,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -39,7 +41,9 @@ fun HomeScreen(viewModel: MainViewModel) {
         }
     }
     val textWelcome = viewModel.textWelcome.collectAsStateWithLifecycle()
-
+    val textIdea by viewModel.textTask.collectAsStateWithLifecycle()
+    val textDescription by viewModel.textDescription.collectAsStateWithLifecycle()
+    val textAlpha by viewModel.ideaAlpha.collectAsStateWithLifecycle()
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -64,9 +68,27 @@ fun HomeScreen(viewModel: MainViewModel) {
 //                )
                 .wrapContentHeight(Alignment.CenterVertically)
         )
-        Spacer(modifier = Modifier.weight(1f))
+        Spacer(modifier=Modifier.weight(1f))
+        Text(
+            text = textIdea,
+            textAlign = TextAlign.Center,
+            fontSize = 26.sp,
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            modifier = Modifier
+                .alpha(textAlpha)
+                .fillMaxWidth(0.9f)
+                .weight(8f)
+                .background(MaterialTheme.colorScheme.background)
+                .border(
+                    width = 2.dp,
+                    shape = RoundedCornerShape(16),
+                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                )
+                .wrapContentHeight(Alignment.CenterVertically)
+        )
+        Spacer(modifier = Modifier.weight(2f))
         Button(
-            onClick = {},
+            onClick = {viewModel.getNewTask()},
             modifier = Modifier
                 .fillMaxWidth(0.9f)
                 .height(100.dp)
@@ -77,7 +99,7 @@ fun HomeScreen(viewModel: MainViewModel) {
                 ),
             shape = RoundedCornerShape(16),
             colors = ButtonDefaults.buttonColors(
-                containerColor = MaterialTheme.colorScheme.background,
+                containerColor = MaterialTheme.colorScheme.secondaryContainer,
                 contentColor = MaterialTheme.colorScheme.onSurfaceVariant
             )
         ) {

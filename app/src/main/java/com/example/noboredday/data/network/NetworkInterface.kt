@@ -1,8 +1,9 @@
 package com.example.noboredday.data.network
 
+import com.example.noboredday.data.dtomodels.IdeasDto
 import retrofit2.http.GET
 
 interface NetworkInterface {
-    @GET
-    suspend fun getIdea(): List<IdeasDto>
+    @GET("random")
+    suspend fun getIdea(): IdeasDto
 }
