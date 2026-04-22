@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.work.impl.constraints.trackers.NetworkStateTracker
 import com.example.habittracker.data.datastore.SettingsDataStore
 import com.example.noboredday.data.AppRepository
+import com.example.noboredday.data.database.DataBase
 import com.example.noboredday.data.mappers.TaskMapper
 import com.example.noboredday.data.network.NetworkWork
 import com.example.noboredday.presentation.view.screens.SettingScreen
@@ -38,4 +39,11 @@ object DataModule {
         taskMapper=taskMapper,
         networkWork = networkWork
     )
+    @Provides
+    @Singleton
+    fun provideDataBase(@ApplicationContext context: Context) = DataBase.getInstance(context)
+
+    @Provides
+    @Singleton
+    fun provideIdeaDao(dataBase: DataBase) = dataBase.ideaDao()
 }

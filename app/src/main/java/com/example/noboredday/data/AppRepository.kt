@@ -14,8 +14,11 @@ class AppRepository @Inject constructor(
     suspend fun getRandomIdea(): Ideas{
         return withContext(Dispatchers.IO){
             val ideasDto = networkWork.getIdea()
-            taskMapper.toDomain(ideasDto!!.first())
+            taskMapper.toDomainFromDto(ideasDto!!.first())
         }
+
+    }
+    private suspend fun savedIdea(){
 
     }
 

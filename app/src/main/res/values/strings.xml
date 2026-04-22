@@ -9,4 +9,6 @@
     <string name="dark_theme">Темная</string>
     <string name="light_theme">Светлая</string>
     <string name="version">1.0.0</string>
+    <string name="settings">Настройки</string>
+    <string name="ideas_list">Список идей</string>
 </resources>

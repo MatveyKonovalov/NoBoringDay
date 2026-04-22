@@ -29,6 +29,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -36,8 +37,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.noboredday.presentation.viewmodels.SettingViewModel
-import com.example.noboredday.presentation.view.components.NameDialog  // ✅ Импорт диалога
+import com.example.noboredday.presentation.view.components.NameDialog
 import com.example.noboredday.R
+import com.example.noboredday.presentation.view.components.Title
 
 @Composable
 fun SettingScreen(settingViewModel: SettingViewModel) {
@@ -48,7 +50,11 @@ fun SettingScreen(settingViewModel: SettingViewModel) {
         modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Title()
+        Title(
+            titleId = R.string.settings,
+            icon = Icons.Default.Settings,
+            contentDescription = "Settings"
+        )
 
         OptionsSetting { ShowUserInfo(settingViewModel) }
         Spacer(modifier = Modifier.padding(2.dp))
@@ -83,30 +89,7 @@ private fun OptionsSetting(content: @Composable () -> Unit) = Surface(
     content = content
 )
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun Title() {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth(0.9f)
-            .height(80.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center,
-    ) {
-        Icon(
-            imageVector = Icons.Default.Settings,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant,
-            contentDescription = "Настройки"
-        )
-        Spacer(modifier = Modifier.padding(5.dp))
-        Text(
-            "Настройки",
-            textAlign = TextAlign.Center,
-            fontSize = 28.sp,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-        )
-    }
-}
+
 
 @Composable
 private fun ShowUserInfo(
