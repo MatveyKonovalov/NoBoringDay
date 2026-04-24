@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">NoBoredDay</string>
+
+    <string name="get_idea">Придумать идею</string>
+    <string name="user_data">Данные пользователя</string>
+    <string name="change_name">Изменить</string>
+    <string name="on_dark_theme">Включена</string>
+    <string name="on_light_theme">Выключена</string>
+    <string name="dark_theme">Темная</string>
+    <string name="light_theme">Светлая</string>
+    <string name="version">1.0.0</string>
+    <string name="settings">Настройки</string>
+    <string name="ideas_list">Список идей</string>
+    <string name="saved_idea">Идея</string>
+    <string name="open_translate">Открыть переводчик</string>
 </resources>
