@@ -6,6 +6,7 @@ import androidx.work.impl.constraints.trackers.NetworkStateTracker
 import com.example.habittracker.data.datastore.SettingsDataStore
 import com.example.noboredday.data.AppRepository
 import com.example.noboredday.data.database.DataBase
+import com.example.noboredday.data.database.IdeaDao
 import com.example.noboredday.data.mappers.TaskMapper
 import com.example.noboredday.data.network.NetworkWork
 import com.example.noboredday.presentation.view.screens.SettingScreen
@@ -35,9 +36,11 @@ object DataModule {
 
     @Provides
     @Singleton
-    fun provideRepository(taskMapper: TaskMapper, networkWork: NetworkWork) = AppRepository(
+    fun provideRepository(taskMapper: TaskMapper, networkWork: NetworkWork, ideaDao: IdeaDao) =
+        AppRepository(
         taskMapper=taskMapper,
-        networkWork = networkWork
+        networkWork = networkWork,
+        ideaDao = ideaDao
     )
     @Provides
     @Singleton

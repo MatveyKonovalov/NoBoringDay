@@ -1,7 +1,9 @@
 package com.example.noboredday.presentation.viewmodels
 
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
 import com.example.habittracker.data.datastore.SettingsDataStore
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -62,4 +64,5 @@ class SettingViewModel @Inject constructor(
     fun closeDialog() {
         _showDialog.value = false
     }
+
 }

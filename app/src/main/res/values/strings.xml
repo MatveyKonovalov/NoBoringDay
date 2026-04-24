@@ -11,4 +11,6 @@
     <string name="version">1.0.0</string>
     <string name="settings">Настройки</string>
     <string name="ideas_list">Список идей</string>
+    <string name="saved_idea">Идея</string>
+    <string name="open_translate">Открыть переводчик</string>
 </resources>

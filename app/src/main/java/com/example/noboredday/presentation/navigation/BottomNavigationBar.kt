@@ -56,7 +56,7 @@ fun BottomNavigationBar(
                                 alpha = 0.7f
                             ),
                             modifier = Modifier
-                                .size(24.dp)
+                                .size(30.dp)
                                 .padding(4.dp)
                         )
                     },

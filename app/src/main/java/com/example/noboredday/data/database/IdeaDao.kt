@@ -13,4 +13,7 @@ interface IdeaDao {
 
     @Query("SELECT * FROM ideas WHERE `key` = :key")
     suspend fun getIdeaByKey(key: String): List<IdeaEntity>
+
+    @Query("SELECT * FROM ideas")
+    suspend fun getAllIdeas(): List<IdeaEntity>
 }

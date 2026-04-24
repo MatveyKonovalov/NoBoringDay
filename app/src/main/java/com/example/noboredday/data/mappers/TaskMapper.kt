@@ -17,4 +17,9 @@ class TaskMapper @Inject constructor() {
         title = idea.activityENG,
         description = idea.duration
     )
+    fun toDomainFromEntity(ideaEntity: IdeaEntity) = Ideas(
+        title = ideaEntity.title,
+        description = ideaEntity.description,
+        key = ideaEntity.key
+    )
 }
