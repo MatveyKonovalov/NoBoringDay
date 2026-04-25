@@ -32,7 +32,7 @@ class MainViewModel @Inject constructor(
     private val _textWelcome = MutableStateFlow<String>("Не знаете чем заняться вечером")
     val textWelcome = _textWelcome.asStateFlow()
 
-    private val _textTask = MutableStateFlow("")
+    private val _textTask = MutableStateFlow(Ideas("", "", ""))
     val textTask = _textTask.asStateFlow()
 
     private val _workText = MutableStateFlow("Загрузка интересной идеи ...")
@@ -62,13 +62,19 @@ class MainViewModel @Inject constructor(
             _workText.value = "Загрузка интересной идеи ..."
             try {
                 val task = appRepository.getRandomIdea()
-                _textTask.value = task.title
-                _workText.value = "Вот что мы нашли!"
-                _statusLoading.value = StateLoading.Success
+                _textTask.value = task
+//                _workText.value = "Вот что мы нашли!"
+//                _statusLoading.value = StateLoading.Success
 
             } catch (e: Exception) {
-                _workText.value = "Ошибка сети. Проверьте подключение к интернету"
-                _statusLoading.value = StateLoading.Error
+                // Если понадобиться обработка сетевой ошибки
+//                _workText.value = "Ошибка сети. Проверьте подключение к интернету"
+//                _statusLoading.value = StateLoading.Error
+                val task = appRepository.getIdeaFromLStore()
+                _textTask.value = task
+            } finally {
+                _workText.value = "Вот что мы нашли!"
+                _statusLoading.value = StateLoading.Success
             }
 
         }
@@ -81,9 +87,20 @@ class MainViewModel @Inject constructor(
             }
         }
     }
-    fun openTranslate(text: String){
+
+    fun openTranslate(text: String) {
         viewModelScope.launch {
             _navigateToTranslate.emit(text)
+        }
+    }
+
+    fun deleteTask(key: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                appRepository.deleteIdea(key)
+                _loadedIdeas.value =
+                    _loadedIdeas.value.mapNotNull { if (it.key == key) null else it }
+            }
         }
     }
 }

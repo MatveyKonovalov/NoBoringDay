@@ -112,7 +112,7 @@ fun OutputIdea(viewModel: MainViewModel) {
     when (status) {
         StateLoading.Loading -> CircularProgressIndicator(color = MaterialTheme.colorScheme.onSurfaceVariant)
         StateLoading.Success -> Text(
-            text = textIdea,
+            text = textIdea.title,
             textAlign = TextAlign.Center,
             fontSize = 26.sp,
             color = MaterialTheme.colorScheme.onSurfaceVariant,

@@ -16,4 +16,7 @@ interface IdeaDao {
 
     @Query("SELECT * FROM ideas")
     suspend fun getAllIdeas(): List<IdeaEntity>
+
+    @Query("DELETE FROM ideas WHERE `key` = :key")
+    suspend fun deleteIdea(key: String): Int
 }

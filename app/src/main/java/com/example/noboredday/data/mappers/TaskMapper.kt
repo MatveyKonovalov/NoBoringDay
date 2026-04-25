@@ -22,4 +22,9 @@ class TaskMapper @Inject constructor() {
         description = ideaEntity.description,
         key = ideaEntity.key
     )
+    fun toEntityFromDomain(ideas: Ideas) = IdeaEntity(
+        key = ideas.key,
+        title = ideas.title,
+        description = ideas.title
+    )
 }

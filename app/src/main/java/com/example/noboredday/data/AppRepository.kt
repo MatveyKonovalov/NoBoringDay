@@ -9,12 +9,13 @@ import com.example.noboredday.domain.repository.AppRepositoryInterface
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
+import kotlin.random.Random
 
 class AppRepository @Inject constructor(
     private val taskMapper: TaskMapper,
     private val networkWork: NetworkWork,
     private val ideaDao: IdeaDao
-): AppRepositoryInterface {
+) : AppRepositoryInterface {
     override suspend fun getRandomIdea(): Ideas {
         return withContext(Dispatchers.IO) {
             val ideasDto = networkWork.getIdea()
@@ -35,6 +36,20 @@ class AppRepository @Inject constructor(
         return withContext(Dispatchers.IO) {
             val ideasEntity = ideaDao.getAllIdeas()
             ideasEntity.map { ideaEntity -> taskMapper.toDomainFromEntity(ideaEntity) }.reversed()
+        }
+    }
+
+    override suspend fun getIdeaFromLStore(): Ideas {
+        return withContext(Dispatchers.IO){
+            val randomIndex = Random.nextInt(0, activities.size)
+            ideaDao.insertIdea(taskMapper.toEntityFromDomain(activities[randomIndex]))
+            activities[randomIndex]
+        }
+
+    }
+    suspend fun deleteIdea(key: String){
+        withContext(Dispatchers.IO){
+            ideaDao.deleteIdea(key)
         }
     }
 

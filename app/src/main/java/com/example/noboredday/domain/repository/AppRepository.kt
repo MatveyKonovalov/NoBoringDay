@@ -6,5 +6,6 @@ import com.example.noboredday.domain.models.Ideas
 interface AppRepositoryInterface {
     suspend fun getRandomIdea(): Ideas
     suspend fun getIdeas(): List<Ideas>
+    suspend fun getIdeaFromLStore(): Ideas
 
 }

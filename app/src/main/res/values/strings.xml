@@ -13,4 +13,5 @@
     <string name="ideas_list">Список идей</string>
     <string name="saved_idea">Идея</string>
     <string name="open_translate">Открыть переводчик</string>
+    <string name="delete_idea">Удалить идею</string>
 </resources>
